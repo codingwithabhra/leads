@@ -11,7 +11,7 @@ const leadSchema = new mongoose.Schema({
         enum: ['Website', 'Referral', 'Cold Call', 'Advertisement', 'Email', 'Other'],
     },
     salesAgent: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'SalesAgent',
         required: true,
     },

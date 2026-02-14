@@ -59,7 +59,7 @@ app.get("/leads", async(req, res) => {
             res.status(404).json({error:"Data not found"});
         }
     } catch (error) {
-        
+        res.status(500).json({error: "Failed to fetch data from database"});
     }
 })
 
@@ -111,5 +111,4 @@ app.delete("/leads/:leadId", async(req, res) => {
 const PORT = 3000;
 app.listen(PORT, ()=> {
     console.log(`Server is running on PORT ${PORT}`);
-    
 })
