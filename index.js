@@ -18,8 +18,8 @@ initialisedatabase();
 
 async function createLeadData(newData){
     try {
-        const newLead = await LeadDatas(newData);
-        const saveLead = newLead.save();
+        const newLead = new LeadDatas(newData);
+        const saveLead = await newLead.save();
         return saveLead;
     } catch (error) {
         throw error;
@@ -36,6 +36,7 @@ app.post("/leads", async(req, res) => {
         const newLead = await createLeadData(req.body);
         res.status(201).json({message: "Data added successfully", data: newLead});
     } catch (error) {
+        console.log("The error is - ", error);
         res.status(500).json({error: "Failed to add data into database"});
     }
 });

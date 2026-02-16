@@ -35,18 +35,15 @@ const leadSchema = new mongoose.Schema({
         enum: ['High', 'Medium', 'Low'],
         default: 'Medium',
     },
+    closedAt: {
+        type: Date,
+    }
 },
     {
         timestamps: true
     },
 )
 
-// Middleware to update the `updatedAt` field on each save
-leadSchema.pre('save', function (next) {
-    this.updatedAt = Date.now();
-    next();
-});
+const Lead = mongoose.model('Lead', leadSchema);
 
-const leadData = mongoose.model('Lead', leadSchema);
-
-module.exports = leadData;
+module.exports = Lead;
