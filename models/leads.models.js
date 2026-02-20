@@ -8,23 +8,23 @@ const leadSchema = new mongoose.Schema({
     source: {
         type: String,
         required: true,
-        enum: ['Website', 'Referral', 'Cold Call', 'Advertisement', 'Email', 'Other'],
+        enum: ['website', 'referral', 'cold call', 'advertisement', 'email', 'other'],
     },
     salesAgent: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         ref: 'SalesAgent',
         required: true,
     },
     status: {
         type: String,
         required: true,
-        enum: ['New', 'Contacted', 'Qualified', 'Proposal Sent', 'Closed'],
+        enum: ['new', 'contacted', 'qualified', 'proposalsent', 'closed'],
         default: 'New',
     },
     tags: {
         type: [String],
     },
-    timeToClose: {
+    timetoclose: {
         type: Number,
         required: true,
         min: 1,
@@ -32,7 +32,7 @@ const leadSchema = new mongoose.Schema({
     priority: {
         type: String,
         required: true,
-        enum: ['High', 'Medium', 'Low'],
+        enum: ['high', 'medium', 'low'],
         default: 'Medium',
     },
     closedAt: {
