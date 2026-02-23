@@ -108,6 +108,29 @@ app.delete("/leads/:leadId", async(req, res) => {
     }
 })
 
+//to update lead data from DB ---------------------------------------
+async function updateLeadData(leadId, datatoupdate){
+    try {
+        const updateData = await LeadDatas.findByIdAndUpdate(leadId, datatoupdate, {new: true});
+        return updateData;
+    } catch (error) {
+        throw error;
+    }
+};
+
+app.get("/leads/:leadId", async(req, res) => {
+    try {
+        const updateData = await updateLeadData(req.params.leadId, req.body);
+        if(updateData){
+            res.status(201).json({message: "Data updated successfully", data: updateData});
+        } else {
+            res.status(404).json({error: "Data not found"});
+        }
+    } catch (error) {
+        res.status(500).json({error: "Failed to update data"});
+    }
+});
+
 
 const PORT = 3000;
 app.listen(PORT, ()=> {
