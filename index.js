@@ -118,7 +118,7 @@ async function updateLeadData(leadId, datatoupdate){
     }
 };
 
-app.get("/leads/:leadId", async(req, res) => {
+app.post("/leads/:leadId", async(req, res) => {
     try {
         const updateData = await updateLeadData(req.params.leadId, req.body);
         if(updateData){
